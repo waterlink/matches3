@@ -5,6 +5,7 @@ function Player(gameField) {
 Player.GameField = function () {
     var Cell = Player.Cell
     var Coordinate = Player.Coordinate
+    var that = this
 
     var pairs = []
 
@@ -24,37 +25,37 @@ Player.GameField = function () {
         return foundPairAt(coordinate).cell
     }
 
+    function cellIsMatching(coordinate) {
+        var cell = that.getCell(coordinate)
+        var matching = false
+
+        var cells = [
+            that.getCell(coordinate.getPrevByY().getPrevByY()),
+            that.getCell(coordinate.getPrevByY()),
+            cell,
+            that.getCell(coordinate.getNextByY()),
+            that.getCell(coordinate.getNextByY().getNextByY())
+        ]
+
+        for (var i = 0; i < 3; i++) {
+            if (cells[i + 1].isSame(cells[i]) && cells[i + 2].isSame(cells[i])) {
+                matching = true
+            }
+        }
+
+        return matching
+    }
+
     this.transform = function () {
         if (pairs.length == 0) return this
 
         var gameField = new Player.GameField();
 
-
         for (var index = 0; index < pairs.length; index++) {
-            var coordinate = pairs[index].coordinate;
-            var cell = this.getCell(coordinate)
-            var matching = false
-
-            var cells = [
-                this.getCell(coordinate.getPrevByY().getPrevByY()),
-                this.getCell(coordinate.getPrevByY()),
-                cell,
-                this.getCell(coordinate.getNextByY()),
-                this.getCell(coordinate.getNextByY().getNextByY())
-            ]
-
-            for (var i = 0; i < 3; i++) {
-                var firstCell = cells[i]
-                var middleCell = cells[i + 1]
-                var lastCell = cells[i + 2]
-
-                if (middleCell.isSame(firstCell) && lastCell.isSame(firstCell)) {
-                    matching = true
-                }
-            }
-
-            if (!matching) {
-                gameField.add(coordinate, cell)
+            var coordinate = pairs[index].coordinate
+            
+            if (!cellIsMatching(coordinate)) {
+                gameField.add(coordinate, that.getCell(coordinate))
             }
         }
         
