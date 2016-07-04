@@ -22,6 +22,10 @@ Player.GameField = function () {
     this.getCell = function (coordinate) {
         return foundPairAt(coordinate).cell
     }
+
+    this.transform = function () {
+        
+    }
 }
 
 Player.Cell = function (color) {
