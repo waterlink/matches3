@@ -18,6 +18,14 @@ describe("GameField", function () {
         cell = gameField.getCell(new Coordinate(0, 0))
         expect(cell.isSame(new Cell(Cell.RED))).toEqual(true)
     })
+
+    it("allows to fetch added cell", function () {
+        var gameField = new GameField()
+        gameField.add(new Coordinate(0, 0), new Cell(Cell.BLUE))
+
+        cell = gameField.getCell(new Coordinate(0, 0))
+        expect(cell.isSame(new Cell(Cell.BLUE))).toEqual(true)
+    })
 })
 
 describe("Cell", function () {
