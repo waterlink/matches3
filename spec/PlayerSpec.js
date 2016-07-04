@@ -1,7 +1,7 @@
 const Player = require("../src/Player")
 const GameField = Player.GameField
 const Cell = Player.Cell
-const Coordinate2 = Player.Coordinate
+const Coordinate = Player.Coordinate
 
 describe("Player", function () {
     it("can be created with game field", function () {
@@ -39,13 +39,20 @@ describe("Cell", function () {
 
 describe("Coordinate", function () {
     it("can be created with 2 numbers", function () {
-        var coordinate = new Coordinate2(3, 4)
+        var coordinate = new Coordinate(3, 4)
     })
 
     it("can be the same as other cell", function () {
-        var coordinate = new Coordinate2(3, 4)
-        var otherCoordinate = new Coordinate2(3, 4)
+        var coordinate = new Coordinate(3, 4)
+        var otherCoordinate = new Coordinate(3, 4)
 
         expect(coordinate.isSame(otherCoordinate)).toEqual(true)
+    })
+
+    it("can not be the same as other cell with different x", function () {
+        var coordinate = new Coordinate(3, 4)
+        var otherCoordinate = new Coordinate(4, 4)
+
+        // expect(coordinate.isSame(otherCoordinate)).toEqual(false)
     })
 })
