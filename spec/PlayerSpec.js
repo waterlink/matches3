@@ -88,7 +88,7 @@ describe("GameField", function () {
         })
     })
 
-    xcontext("when something can be matched vertically somewhere else", function () {
+    context("when something can be matched vertically somewhere else", function () {
         beforeEach(function () {
             gameField.add(new Coordinate(5, 0), new Cell(Cell.BLUE))
             gameField.add(new Coordinate(5, 1), new Cell(Cell.BLUE))
