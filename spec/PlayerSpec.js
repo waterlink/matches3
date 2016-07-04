@@ -1,6 +1,7 @@
 const Player = require("../src/Player")
 const GameField = Player.GameField
 const Cell = Player.Cell
+const Coordinate2 = Player.Coordinate
 
 describe("Player", function () {
     it("can be created with game field", function () {
@@ -36,12 +37,8 @@ describe("Cell", function () {
     })
 })
 
-function Coordinate(x, y) {
-
-}
-
 describe("Coordinate", function () {
     it("can be created with 2 numbers", function () {
-        var coordinate = new Coordinate(3, 4)
+        var coordinate = new Coordinate2(3, 4)
     })
 })

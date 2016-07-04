@@ -17,6 +17,10 @@ Player.Cell = function (color) {
 Player.Cell.RED = "red"
 Player.Cell.BLUE = "blue"
 
+Player.Coordinate = function (x, y) {
+
+}
+
 if (typeof module != "undefined") {
     module.exports = Player
 }
