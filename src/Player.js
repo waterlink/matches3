@@ -6,11 +6,16 @@ Player.GameField = function () {
 
 }
 
-Player.Cell = function () {
-    this.isSame = function () {
-        return true
+Player.Cell = function (color) {
+    this._color = color
+
+    this.isSame = function (other) {
+        return color == other._color
     }
 }
+
+Player.Cell.RED = "red"
+Player.Cell.BLUE = "blue"
 
 if (typeof module != "undefined") {
     module.exports = Player

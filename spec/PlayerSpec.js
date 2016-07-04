@@ -35,4 +35,11 @@ describe("Cell", function () {
 
         expect(cell.isSame(otherCell)).toEqual(true)
     })
+
+    it("can be of different color from other cell", function () {
+        var cell = new Cell(Cell.RED)
+        var otherCell = new Cell(Cell.BLUE)
+
+        expect(cell.isSame(otherCell)).toEqual(false)
+    })
 })
