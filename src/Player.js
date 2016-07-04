@@ -3,8 +3,14 @@ function Player(gameField) {
 }
 
 Player.GameField = function () {
+    var Cell = Player.Cell
+
     this.add = function (coordinate, cell) {
-        
+
+    }
+
+    this.getCell = function (coordinate) {
+        return new Cell(Cell.RED)
     }
 }
 

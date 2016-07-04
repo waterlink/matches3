@@ -13,7 +13,10 @@ describe("Player", function () {
 describe("GameField", function () {
     it("can have cells", function () {
         var gameField = new GameField()
-        gameField.add(new Coordinate(0, 0), new Cell())
+        gameField.add(new Coordinate(0, 0), new Cell(Cell.RED))
+
+        cell = gameField.getCell(new Coordinate(0, 0))
+        expect(cell.isSame(new Cell(Cell.RED))).toEqual(true)
     })
 })
 
