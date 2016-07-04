@@ -32,10 +32,12 @@ describe("GameField", function () {
     })
 
     context("when there are 2 different cells", function () {
-        it("allows to fetch added cell with different coordinate", function () {
+        beforeEach(function () {
             gameField.add(new Coordinate(0, 0), new Cell(Cell.BLUE))
             gameField.add(new Coordinate(0, 1), new Cell(Cell.RED))
+        })
 
+        it("allows to fetch added cell with different coordinate", function () {
             var cell = gameField.getCell(new Coordinate(0, 0))
             expect(cell.isSame(new Cell(Cell.BLUE))).toEqual(true)
         })
