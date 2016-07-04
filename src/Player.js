@@ -1,4 +1,4 @@
-function Player() {
+function Player(gameField) {
 
 }
 
