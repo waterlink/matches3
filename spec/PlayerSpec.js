@@ -53,6 +53,6 @@ describe("Coordinate", function () {
         var coordinate = new Coordinate(3, 4)
         var otherCoordinate = new Coordinate(4, 4)
 
-        // expect(coordinate.isSame(otherCoordinate)).toEqual(false)
+        expect(coordinate.isSame(otherCoordinate)).toEqual(false)
     })
 })
