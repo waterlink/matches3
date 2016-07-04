@@ -345,7 +345,7 @@ describe("Coordinate", function () {
         })
     })
 
-    describe("getPrevByX", function () {
+    describe(".getPrevByX", function () {
         it("can be used to fetch previous x coordinate", function () {
             var coordinate = new Coordinate(3, 4)
             var expectedPrevXCoordinate = new Coordinate(2, 4)
@@ -394,6 +394,32 @@ describe("Coordinate", function () {
             var nextYCoordinate = coordinate.getNextByY()
 
             expect(nextYCoordinate.isSame(expectedNextYCoordinate)).toEqual(true)
+        })
+    })
+
+    describe("getPrevByY", function () {
+        it("can be used to fetch previous y coordinate", function () {
+            var coordinate = new Coordinate(3, 4)
+            var expectedPrevYCoordinate = new Coordinate(3, 3)
+            var prevYCoordinate = coordinate.getPrevByY()
+
+            expect(prevYCoordinate.isSame(expectedPrevYCoordinate)).toEqual(true)
+        })
+
+        it("can be used to fetch different previous y coordinate", function () {
+            var coordinate = new Coordinate(3, 42)
+            var expectedPrevYCoordinate = new Coordinate(3, 41)
+            var prevYCoordinate = coordinate.getPrevByY()
+
+            expect(prevYCoordinate.isSame(expectedPrevYCoordinate)).toEqual(true)
+        })
+
+        it("can be used to fetch previous y coordinate with different x", function () {
+            var coordinate = new Coordinate(43, 4)
+            var expectedPrevYCoordinate = new Coordinate(43, 3)
+            var prevYCoordinate = coordinate.getPrevByY()
+
+            expect(prevYCoordinate.isSame(expectedPrevYCoordinate)).toEqual(true)
         })
     })
 })
