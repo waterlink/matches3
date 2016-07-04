@@ -3,7 +3,9 @@ function Player(gameField) {
 }
 
 Player.GameField = function () {
-
+    this.add = function (coordinate, cell) {
+        
+    }
 }
 
 Player.Cell = function (color) {
