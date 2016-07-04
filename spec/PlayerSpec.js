@@ -109,11 +109,11 @@ describe("GameField", function () {
         })
 
         it("allows to fetch first added cell", function () {
-            expect(cellAt(0, 0).isSame(new Cell(Cell.BLUE))).toEqual(true)
+            expect(cellAt(0, 0)).toBeOfColor(Cell.BLUE)
         })
 
         it("allows to fetch second added cell", function () {
-            expect(cellAt(0, 1).isSame(new Cell(Cell.RED))).toEqual(true)
+            expect(cellAt(0, 1)).toBeOfColor(Cell.RED)
         })
     })
 
@@ -128,8 +128,8 @@ describe("GameField", function () {
         it("stays same", function () {
             gameField = gameField.transform()
 
-            expect(cellAt(0, 0).isSame(new Cell(Cell.BLUE))).toEqual(true)
-            expect(cellAt(0, 1).isSame(new Cell(Cell.RED))).toEqual(true)
+            expect(cellAt(0, 0)).toBeOfColor(Cell.BLUE)
+            expect(cellAt(0, 1)).toBeOfColor(Cell.RED)
         })
     })
 
@@ -145,9 +145,9 @@ describe("GameField", function () {
         it("gets matched and destroyed", function () {
             gameField = gameField.transform()
 
-            expect(cellAt(0, 0).isSame(Cell.NONE)).toEqual(true)
-            expect(cellAt(0, 1).isSame(Cell.NONE)).toEqual(true)
-            expect(cellAt(0, 2).isSame(Cell.NONE)).toEqual(true)
+            expect(cellAt(0, 0)).toBeMissing()
+            expect(cellAt(0, 1)).toBeMissing()
+            expect(cellAt(0, 2)).toBeMissing()
         })
     })
 
@@ -163,9 +163,9 @@ describe("GameField", function () {
         it("gets matched and destroyed", function () {
             gameField = gameField.transform()
 
-            expect(cellAt(5, 0).isSame(Cell.NONE)).toEqual(true)
-            expect(cellAt(5, 1).isSame(Cell.NONE)).toEqual(true)
-            expect(cellAt(5, 2).isSame(Cell.NONE)).toEqual(true)
+            expect(cellAt(5, 0)).toBeMissing()
+            expect(cellAt(5, 1)).toBeMissing()
+            expect(cellAt(5, 2)).toBeMissing()
         })
     })
 
@@ -181,9 +181,9 @@ describe("GameField", function () {
         it("is not matched", function () {
             gameField = gameField.transform()
 
-            expect(cellAt(5, 0).isSame(Cell.NONE)).toEqual(false)
-            expect(cellAt(5, 1).isSame(Cell.NONE)).toEqual(false)
-            expect(cellAt(5, 2).isSame(Cell.NONE)).toEqual(false)
+            expect(cellAt(5, 0)).not.toBeMissing()
+            expect(cellAt(5, 1)).not.toBeMissing()
+            expect(cellAt(5, 2)).not.toBeMissing()
         })
     })
 
@@ -199,9 +199,9 @@ describe("GameField", function () {
         it("is not matched", function () {
             gameField = gameField.transform()
 
-            expect(cellAt(5, 0).isSame(Cell.NONE)).toEqual(false)
-            expect(cellAt(5, 1).isSame(Cell.NONE)).toEqual(false)
-            expect(cellAt(5, 2).isSame(Cell.NONE)).toEqual(false)
+            expect(cellAt(5, 0)).not.toBeMissing()
+            expect(cellAt(5, 1)).not.toBeMissing()
+            expect(cellAt(5, 2)).not.toBeMissing()
         })
     })
 
@@ -217,9 +217,9 @@ describe("GameField", function () {
         it("is not matched", function () {
             gameField = gameField.transform()
 
-            expect(cellAt(5, 0).isSame(Cell.NONE)).toEqual(false)
-            expect(cellAt(5, 1).isSame(Cell.NONE)).toEqual(false)
-            expect(cellAt(5, 2).isSame(Cell.NONE)).toEqual(false)
+            expect(cellAt(5, 0)).not.toBeMissing()
+            expect(cellAt(5, 1)).not.toBeMissing()
+            expect(cellAt(5, 2)).not.toBeMissing()
         })
     })
 
