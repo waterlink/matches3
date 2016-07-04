@@ -47,6 +47,8 @@ Player.Cell = function (color) {
 }
 
 var NoCell = function () {
+    this._color = "NONE"
+
     this.isSame = function (other) {
         return Player.Cell.NONE === other
     }

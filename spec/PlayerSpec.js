@@ -54,13 +54,15 @@ describe("GameField", function () {
                     } else {
                         result.message = "Expected " + actual + " to be missing"
                     }
+
+                    return result
                 }
             }
         }
     }
 
     beforeEach(function () {
-        
+        jasmine.addMatchers(customMatchers)
     })
 
     it("can have cells", function () {
@@ -76,7 +78,7 @@ describe("GameField", function () {
     })
 
     it("handles missing cell gracefully", function () {
-        expect(cellAt(0, 0).isSame(Cell.NONE)).toEqual(true)
+        expect(cellAt(0, 0)).toBeMissing()
     })
 
     context("when there are 2 different cells", function () {
@@ -217,6 +219,12 @@ describe("Cell", function () {
         var otherCell = new Cell(Cell.BLUE)
 
         expect(cell.isSame(otherCell)).toEqual(false)
+    })
+
+    it("can not be equal to NONE even when color is undefined", function () {
+        var cellWithoutColor = new Cell(undefined)
+
+        expect(cellWithoutColor.isSame(Cell.NONE)).toEqual(false)
     })
 })
 
