@@ -162,9 +162,11 @@ describe("GameField", function () {
 
     context("when column has different middle color", function () {
         beforeEach(function () {
-            gameField.add(new Coordinate(5, 0), new Cell(Cell.BLUE))
-            gameField.add(new Coordinate(5, 1), new Cell(Cell.RED))
-            gameField.add(new Coordinate(5, 2), new Cell(Cell.BLUE))
+            setupGameField(5, 0, [
+                "B",
+                "R",
+                "B"
+            ])
         })
 
         it("is not matched", function () {
@@ -182,9 +184,11 @@ describe("GameField", function () {
 
     context("when column has different last color", function () {
         beforeEach(function () {
-            gameField.add(new Coordinate(5, 0), new Cell(Cell.BLUE))
-            gameField.add(new Coordinate(5, 1), new Cell(Cell.BLUE))
-            gameField.add(new Coordinate(5, 2), new Cell(Cell.RED))
+            setupGameField(5, 0, [
+                "B",
+                "B",
+                "R"
+            ])
         })
 
         it("is not matched", function () {
