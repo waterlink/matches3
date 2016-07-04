@@ -12,9 +12,9 @@ Player.GameField = function () {
     }
 
     this.getCell = function (coordinate) {
-        return cells.find(function (pair) {
+        return (cells.find(function (pair) {
             return pair[0].isSame(coordinate)
-        })[1]
+        }) || [null, Cell.NONE])[1]
     }
 }
 
@@ -26,8 +26,15 @@ Player.Cell = function (color) {
     }
 }
 
+var NoCell = function () {
+    this.isSame = function (other) {
+        return Player.Cell.NONE === other
+    }
+}
+
 Player.Cell.RED = "red"
 Player.Cell.BLUE = "blue"
+Player.Cell.NONE = new NoCell()
 
 Player.Coordinate = function (x, y) {
     this._x = x

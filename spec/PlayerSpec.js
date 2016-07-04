@@ -31,6 +31,11 @@ describe("GameField", function () {
         expect(cell.isSame(new Cell(Cell.BLUE))).toEqual(true)
     })
 
+    it("handles missing cell gracefully", function () {
+        var cell = gameField.getCell(new Coordinate(0, 0))
+        expect(cell.isSame(Cell.NONE)).toEqual(true)
+    })
+
     context("when there are 2 different cells", function () {
         beforeEach(function () {
             gameField.add(new Coordinate(0, 0), new Cell(Cell.BLUE))
