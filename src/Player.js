@@ -18,7 +18,9 @@ Player.Cell.RED = "red"
 Player.Cell.BLUE = "blue"
 
 Player.Coordinate = function (x, y) {
-
+    this.isSame = function (other) {
+        return true
+    }
 }
 
 if (typeof module != "undefined") {

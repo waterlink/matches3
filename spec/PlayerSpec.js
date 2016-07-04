@@ -41,4 +41,11 @@ describe("Coordinate", function () {
     it("can be created with 2 numbers", function () {
         var coordinate = new Coordinate2(3, 4)
     })
+
+    it("can be the same as other cell", function () {
+        var coordinate = new Coordinate2(3, 4)
+        var otherCoordinate = new Coordinate2(3, 4)
+
+        expect(coordinate.isSame(otherCoordinate)).toEqual(true)
+    })
 })
