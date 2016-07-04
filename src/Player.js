@@ -12,7 +12,9 @@ Player.GameField = function () {
     }
 
     this.getCell = function (coordinate) {
-        return cells[0][1]
+        return cells.find(function (pair) {
+            return pair[0].isSame(coordinate)
+        })[1]
     }
 }
 

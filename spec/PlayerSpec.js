@@ -31,7 +31,7 @@ describe("GameField", function () {
         expect(cell.isSame(new Cell(Cell.BLUE))).toEqual(true)
     })
 
-    xit("allows to fetch added cell with different coordinate", function () {
+    it("allows to fetch added cell with different coordinate", function () {
         gameField.add(new Coordinate(0, 0), new Cell(Cell.BLUE))
         gameField.add(new Coordinate(0, 1), new Cell(Cell.RED))
 
