@@ -35,3 +35,13 @@ describe("Cell", function () {
         expect(cell.isSame(otherCell)).toEqual(false)
     })
 })
+
+function Coordinate(x, y) {
+
+}
+
+describe("Coordinate", function () {
+    it("can be created with 2 numbers", function () {
+        var coordinate = new Coordinate(3, 4)
+    })
+})
