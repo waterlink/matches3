@@ -183,5 +183,21 @@ describe("Coordinate", function () {
 
             expect(nextYCoordinate.isSame(expectedNextYCoordinate)).toEqual(true)
         })
+
+        it("can be used to fetch different next y coordinate", function () {
+            var coordinate = new Coordinate(3, 45)
+            var expectedNextYCoordinate = new Coordinate(3, 46)
+            var nextYCoordinate = coordinate.getNextByY()
+
+            expect(nextYCoordinate.isSame(expectedNextYCoordinate)).toEqual(true)
+        })
+
+        it("can be used to fetch next y coordinate with different x", function () {
+            var coordinate = new Coordinate(88, 4)
+            var expectedNextYCoordinate = new Coordinate(88, 5)
+            var nextYCoordinate = coordinate.getNextByY()
+
+            expect(nextYCoordinate.isSame(expectedNextYCoordinate)).toEqual(true)
+        })
     })
 })
