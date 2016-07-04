@@ -32,13 +32,12 @@ Player.GameField = function () {
     }
 
     function cellIsMatchingBy(by, coordinate) {
-        var cell = that.getCell(coordinate)
         var matching = false
 
         var cells = [
             that.getCell(coordinate.getPrev(by).getPrev(by)),
             that.getCell(coordinate.getPrev(by)),
-            cell,
+            that.getCell(coordinate),
             that.getCell(coordinate.getNext(by)),
             that.getCell(coordinate.getNext(by).getNext(by))
         ]
@@ -53,8 +52,8 @@ Player.GameField = function () {
     }
 
     function cellIsMatching(coordinate) {
-        return cellIsMatchingBy(Coordinate.ByY, coordinate) ||
-            cellIsMatchingBy(Coordinate.ByX, coordinate);
+        return cellIsMatchingBy(Coordinate.YAxis, coordinate) ||
+            cellIsMatchingBy(Coordinate.XAxis, coordinate);
     }
 
     this.transform = function () {
@@ -119,13 +118,13 @@ Player.Coordinate = function (x, y) {
     }
 }
 
-Player.Coordinate.ByX = {
+Player.Coordinate.XAxis = {
     incrementBy: function (x, y, value) {
         return new Player.Coordinate(x + value, y)
     }
 }
 
-Player.Coordinate.ByY = {
+Player.Coordinate.YAxis = {
     incrementBy: function (x, y, value) {
         return new Player.Coordinate(x, y + value)
     }
