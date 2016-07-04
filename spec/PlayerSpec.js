@@ -37,9 +37,14 @@ describe("GameField", function () {
             gameField.add(new Coordinate(0, 1), new Cell(Cell.RED))
         })
 
-        it("allows to fetch added cell with different coordinate", function () {
+        it("allows to fetch first added cell", function () {
             var cell = gameField.getCell(new Coordinate(0, 0))
             expect(cell.isSame(new Cell(Cell.BLUE))).toEqual(true)
+        })
+
+        it("allows to fetch second added cell", function () {
+            var cell = gameField.getCell(new Coordinate(0, 1))
+            expect(cell.isSame(new Cell(Cell.RED))).toEqual(true)
         })
     })
 })
