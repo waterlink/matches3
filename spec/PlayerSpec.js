@@ -87,6 +87,24 @@ describe("GameField", function () {
             expect(firstCell.isSame(Cell.NONE)).toEqual(true)
         })
     })
+
+    xcontext("when something can be matched vertically somewhere else", function () {
+        beforeEach(function () {
+            gameField.add(new Coordinate(5, 0), new Cell(Cell.BLUE))
+            gameField.add(new Coordinate(5, 1), new Cell(Cell.BLUE))
+            gameField.add(new Coordinate(5, 2), new Cell(Cell.BLUE))
+        })
+
+        it("gets matched and destroyed", function () {
+            var nextGameField = gameField.transform()
+
+            var firstCell = nextGameField.getCell(new Coordinate(5, 0))
+            var secondCell = nextGameField.getCell(new Coordinate(5, 1))
+            var thirdCell = nextGameField.getCell(new Coordinate(5, 2))
+
+            expect(firstCell.isSame(Cell.NONE)).toEqual(true)
+        })
+    })
 })
 
 describe("Cell", function () {
@@ -129,5 +147,16 @@ describe("Coordinate", function () {
         var otherCoordinate = new Coordinate(3, 5)
 
         expect(coordinate.isSame(otherCoordinate)).toEqual(false)
+    })
+
+    describe(".getNextByX()", function () {
+        it("can be used to fetch next x coordinate", function () {
+            var coordinate = new Coordinate(3, 4)
+            var expectedNextXCoordinate = new Coordinate(4, 4)
+            var nextXCoordinate = coordinate.getNextByX()
+
+            expect(nextXCoordinate.isSame(expectedNextXCoordinate)).toEqual(true)
+        })
+
     })
 })

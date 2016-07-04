@@ -57,6 +57,10 @@ Player.Coordinate = function (x, y) {
     this.isSame = function (other) {
         return x == other._x && y == other._y
     }
+
+    this.getNextByX = function () {
+        return new Player.Coordinate(4, 4)
+    }
 }
 
 if (typeof module != "undefined") {
