@@ -17,6 +17,26 @@ describe("GameField", function () {
         gameField = new GameField()
     })
 
+    function setupGameField(offsetX, offsetY, field) {
+        const colors = {"R": Cell.RED, "B": Cell.BLUE}
+
+        for (var y = 0; y < field.length; y++) {
+            for (var x = 0; x < field[0].length; x++) {
+                var cellRepr = field[y][x]
+                var coordinate = new Coordinate(offsetX + x, offsetY + y)
+                var cell
+
+                if (cellRepr == ".") {
+                    cell = Cell.NONE
+                } else {
+                    cell = new Cell(colors[cellRepr])
+                }
+
+                gameField.add(coordinate, cell)
+            }
+        }
+    }
+
     it("can have cells", function () {
         gameField.add(new Coordinate(0, 0), new Cell(Cell.RED))
 
@@ -38,8 +58,10 @@ describe("GameField", function () {
 
     context("when there are 2 different cells", function () {
         beforeEach(function () {
-            gameField.add(new Coordinate(0, 0), new Cell(Cell.BLUE))
-            gameField.add(new Coordinate(0, 1), new Cell(Cell.RED))
+            setupGameField(0, 0, [
+                "B",
+                "R"
+            ])
         })
 
         it("allows to fetch first added cell", function () {
@@ -55,8 +77,10 @@ describe("GameField", function () {
 
     context("when nothing can be match3-ed", function () {
         beforeEach(function () {
-            gameField.add(new Coordinate(0, 0), new Cell(Cell.BLUE))
-            gameField.add(new Coordinate(0, 1), new Cell(Cell.RED))
+            setupGameField(0, 0, [
+                "B",
+                "R"
+            ])
         })
 
         it("stays same", function () {
@@ -72,9 +96,11 @@ describe("GameField", function () {
 
     context("when something can be matched vertically", function () {
         beforeEach(function () {
-            gameField.add(new Coordinate(0, 0), new Cell(Cell.BLUE))
-            gameField.add(new Coordinate(0, 1), new Cell(Cell.BLUE))
-            gameField.add(new Coordinate(0, 2), new Cell(Cell.BLUE))
+            setupGameField(0, 0, [
+                "B",
+                "B",
+                "B"
+            ])
         })
 
         it("gets matched and destroyed", function () {
@@ -92,9 +118,11 @@ describe("GameField", function () {
 
     context("when something can be matched vertically somewhere else", function () {
         beforeEach(function () {
-            gameField.add(new Coordinate(5, 0), new Cell(Cell.BLUE))
-            gameField.add(new Coordinate(5, 1), new Cell(Cell.BLUE))
-            gameField.add(new Coordinate(5, 2), new Cell(Cell.BLUE))
+            setupGameField(5, 0, [
+                "B",
+                "B",
+                "B"
+            ])
         })
 
         it("gets matched and destroyed", function () {
@@ -112,9 +140,11 @@ describe("GameField", function () {
 
     context("when column has different top color", function () {
         beforeEach(function () {
-            gameField.add(new Coordinate(5, 0), new Cell(Cell.RED))
-            gameField.add(new Coordinate(5, 1), new Cell(Cell.BLUE))
-            gameField.add(new Coordinate(5, 2), new Cell(Cell.BLUE))
+            setupGameField(5, 0, [
+                "R",
+                "B",
+                "B"
+            ])
         })
 
         it("is not matched", function () {
