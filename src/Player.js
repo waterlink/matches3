@@ -5,16 +5,22 @@ function Player(gameField) {
 Player.GameField = function () {
     var Cell = Player.Cell
 
-    var cells = []
+    var pairs = []
+
+    const NOT_FOUND = {cell: Cell.NONE}
+
+    function foundPairAt(coordinate) {
+        return pairs.find(function (pair) {
+                return pair.coordinate.isSame(coordinate)
+            }) || NOT_FOUND;
+    }
 
     this.add = function (coordinate, cell) {
-        cells.push([coordinate, cell])
+        pairs.push({coordinate: coordinate, cell: cell})
     }
 
     this.getCell = function (coordinate) {
-        return (cells.find(function (pair) {
-            return pair[0].isSame(coordinate)
-        }) || [null, Cell.NONE])[1]
+        return foundPairAt(coordinate).cell
     }
 }
 
