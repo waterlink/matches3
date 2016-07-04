@@ -25,16 +25,16 @@ Player.GameField = function () {
         return foundPairAt(coordinate).cell
     }
 
-    function cellIsMatching(coordinate) {
+    function cellIsMatchingBy(by, coordinate) {
         var cell = that.getCell(coordinate)
         var matching = false
 
         var cells = [
-            that.getCell(coordinate.getPrevByY().getPrevByY()),
-            that.getCell(coordinate.getPrevByY()),
+            that.getCell(coordinate.getPrev(by).getPrev(by)),
+            that.getCell(coordinate.getPrev(by)),
             cell,
-            that.getCell(coordinate.getNextByY()),
-            that.getCell(coordinate.getNextByY().getNextByY())
+            that.getCell(coordinate.getNext(by)),
+            that.getCell(coordinate.getNext(by).getNext(by))
         ]
 
         for (var i = 0; i < 3; i++) {
@@ -46,6 +46,11 @@ Player.GameField = function () {
         return matching
     }
 
+    function cellIsMatching(coordinate) {
+        return cellIsMatchingBy(Coordinate.ByY, coordinate) ||
+            cellIsMatchingBy(Coordinate.ByX, coordinate);
+    }
+
     this.transform = function () {
         if (pairs.length == 0) return this
 
@@ -53,7 +58,7 @@ Player.GameField = function () {
 
         for (var index = 0; index < pairs.length; index++) {
             var coordinate = pairs[index].coordinate
-            
+
             if (!cellIsMatching(coordinate)) {
                 gameField.add(coordinate, that.getCell(coordinate))
             }
@@ -99,20 +104,24 @@ Player.Coordinate = function (x, y) {
         return x == other._x && y == other._y
     }
 
-    this.getNextByX = function () {
-        return new Player.Coordinate(x + 1, y)
+    this.getNext = function (by) {
+        return by.incrementBy(x, y, 1)
     }
 
-    this.getPrevByX = function () {
-        return new Player.Coordinate(x - 1, y)
+    this.getPrev = function (by) {
+        return by.incrementBy(x, y, -1)
     }
+}
 
-    this.getNextByY = function () {
-        return new Player.Coordinate(x, y + 1)
+Player.Coordinate.ByX = {
+    incrementBy: function (x, y, value) {
+        return new Player.Coordinate(x + value, y)
     }
+}
 
-    this.getPrevByY = function () {
-        return new Player.Coordinate(x, y - 1)
+Player.Coordinate.ByY = {
+    incrementBy: function (x, y, value) {
+        return new Player.Coordinate(x, y + value)
     }
 }
 

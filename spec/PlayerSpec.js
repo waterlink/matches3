@@ -250,12 +250,33 @@ describe("GameField", function () {
             ])
         })
 
-        it("is matched and destroyed", function () {
+        it("is matched and destroyed only for matching cells", function () {
             gameField = gameField.transform()
 
             expect(cellAt(6, 0)).not.toBeMissing()
             expect(cellAt(6, 1)).not.toBeMissing()
             expect(cellAt(6, 2)).not.toBeMissing()
+        })
+    })
+
+    context("when there is a match horizontally", function () {
+        beforeEach(function () {
+            setupGameField(0, 0, [
+                "RRR",
+                "RBR"
+            ])
+        })
+
+        it("is matched and destroyed", function () {
+            gameField = gameField.transform()
+
+            expect(cellAt(0, 0)).toBeMissing()
+            expect(cellAt(1, 0)).toBeMissing()
+            expect(cellAt(2, 0)).toBeMissing()
+
+            expect(cellAt(0, 1)).not.toBeMissing()
+            expect(cellAt(1, 1)).not.toBeMissing()
+            expect(cellAt(2, 1)).not.toBeMissing()
         })
     })
 
@@ -319,11 +340,11 @@ describe("Coordinate", function () {
         expect(coordinate.isSame(otherCoordinate)).toEqual(false)
     })
 
-    describe(".getNextByX()", function () {
+    describe(".getNext(Coordinate.ByX)", function () {
         it("can be used to fetch next x coordinate", function () {
             var coordinate = new Coordinate(3, 4)
             var expectedNextXCoordinate = new Coordinate(4, 4)
-            var nextXCoordinate = coordinate.getNextByX()
+            var nextXCoordinate = coordinate.getNext(Coordinate.ByX)
 
             expect(nextXCoordinate.isSame(expectedNextXCoordinate)).toEqual(true)
         })
@@ -331,7 +352,7 @@ describe("Coordinate", function () {
         it("can be used to fetch different next x coordinate", function () {
             var coordinate = new Coordinate(75, 4)
             var expectedNextXCoordinate = new Coordinate(76, 4)
-            var nextXCoordinate = coordinate.getNextByX()
+            var nextXCoordinate = coordinate.getNext(Coordinate.ByX)
 
             expect(nextXCoordinate.isSame(expectedNextXCoordinate)).toEqual(true)
         })
@@ -339,17 +360,17 @@ describe("Coordinate", function () {
         it("can be used to fetch next x coordinate with different y", function () {
             var coordinate = new Coordinate(3, 42)
             var expectedNextXCoordinate = new Coordinate(4, 42)
-            var nextXCoordinate = coordinate.getNextByX()
+            var nextXCoordinate = coordinate.getNext(Coordinate.ByX)
 
             expect(nextXCoordinate.isSame(expectedNextXCoordinate)).toEqual(true)
         })
     })
 
-    describe(".getPrevByX", function () {
+    describe(".getPrev(Coordinate.ByX)", function () {
         it("can be used to fetch previous x coordinate", function () {
             var coordinate = new Coordinate(3, 4)
             var expectedPrevXCoordinate = new Coordinate(2, 4)
-            var prevXCoordinate = coordinate.getPrevByX()
+            var prevXCoordinate = coordinate.getPrev(Coordinate.ByX)
 
             expect(prevXCoordinate.isSame(expectedPrevXCoordinate)).toEqual(true)
         })
@@ -357,7 +378,7 @@ describe("Coordinate", function () {
         it("can be used to fetch different previous x coordinate", function () {
             var coordinate = new Coordinate(33, 4)
             var expectedPrevXCoordinate = new Coordinate(32, 4)
-            var prevXCoordinate = coordinate.getPrevByX()
+            var prevXCoordinate = coordinate.getPrev(Coordinate.ByX)
 
             expect(prevXCoordinate.isSame(expectedPrevXCoordinate)).toEqual(true)
         })
@@ -365,17 +386,17 @@ describe("Coordinate", function () {
         it("can be used to fetch previous x coordinate with different y", function () {
             var coordinate = new Coordinate(3, 45)
             var expectedPrevXCoordinate = new Coordinate(2, 45)
-            var prevXCoordinate = coordinate.getPrevByX()
+            var prevXCoordinate = coordinate.getPrev(Coordinate.ByX)
 
             expect(prevXCoordinate.isSame(expectedPrevXCoordinate)).toEqual(true)
         })
     })
 
-    describe(".getNextByY", function () {
+    describe(".getNext(Coordinate.ByY)", function () {
         it("can be used to fetch next y coordinate", function () {
             var coordinate = new Coordinate(3, 4)
             var expectedNextYCoordinate = new Coordinate(3, 5)
-            var nextYCoordinate = coordinate.getNextByY()
+            var nextYCoordinate = coordinate.getNext(Coordinate.ByY)
 
             expect(nextYCoordinate.isSame(expectedNextYCoordinate)).toEqual(true)
         })
@@ -383,7 +404,7 @@ describe("Coordinate", function () {
         it("can be used to fetch different next y coordinate", function () {
             var coordinate = new Coordinate(3, 45)
             var expectedNextYCoordinate = new Coordinate(3, 46)
-            var nextYCoordinate = coordinate.getNextByY()
+            var nextYCoordinate = coordinate.getNext(Coordinate.ByY)
 
             expect(nextYCoordinate.isSame(expectedNextYCoordinate)).toEqual(true)
         })
@@ -391,17 +412,17 @@ describe("Coordinate", function () {
         it("can be used to fetch next y coordinate with different x", function () {
             var coordinate = new Coordinate(88, 4)
             var expectedNextYCoordinate = new Coordinate(88, 5)
-            var nextYCoordinate = coordinate.getNextByY()
+            var nextYCoordinate = coordinate.getNext(Coordinate.ByY)
 
             expect(nextYCoordinate.isSame(expectedNextYCoordinate)).toEqual(true)
         })
     })
 
-    describe("getPrevByY", function () {
+    describe(".getPrev(Coordinate.ByY)", function () {
         it("can be used to fetch previous y coordinate", function () {
             var coordinate = new Coordinate(3, 4)
             var expectedPrevYCoordinate = new Coordinate(3, 3)
-            var prevYCoordinate = coordinate.getPrevByY()
+            var prevYCoordinate = coordinate.getPrev(Coordinate.ByY)
 
             expect(prevYCoordinate.isSame(expectedPrevYCoordinate)).toEqual(true)
         })
@@ -409,7 +430,7 @@ describe("Coordinate", function () {
         it("can be used to fetch different previous y coordinate", function () {
             var coordinate = new Coordinate(3, 42)
             var expectedPrevYCoordinate = new Coordinate(3, 41)
-            var prevYCoordinate = coordinate.getPrevByY()
+            var prevYCoordinate = coordinate.getPrev(Coordinate.ByY)
 
             expect(prevYCoordinate.isSame(expectedPrevYCoordinate)).toEqual(true)
         })
@@ -417,7 +438,7 @@ describe("Coordinate", function () {
         it("can be used to fetch previous y coordinate with different x", function () {
             var coordinate = new Coordinate(43, 4)
             var expectedPrevYCoordinate = new Coordinate(43, 3)
-            var prevYCoordinate = coordinate.getPrevByY()
+            var prevYCoordinate = coordinate.getPrev(Coordinate.ByY)
 
             expect(prevYCoordinate.isSame(expectedPrevYCoordinate)).toEqual(true)
         })
