@@ -27,8 +27,10 @@ Player.GameField = function () {
     this.transform = function () {
         if (pairs.length == 0) return this
 
-        var coordinate = pairs[0].coordinate.getNextByY().getNextByY()
-        if (this.getCell(coordinate).isSame(new Cell(Cell.BLUE))) {
+        var firstCell = this.getCell(pairs[0].coordinate)
+        var lastCell = this.getCell(pairs[0].coordinate.getNextByY().getNextByY());
+
+        if (lastCell.isSame(new Cell(Cell.BLUE)) && firstCell.isSame(new Cell(Cell.BLUE))) {
             return new Player.GameField()
         }
         return this

@@ -85,6 +85,8 @@ describe("GameField", function () {
             var thirdCell = nextGameField.getCell(new Coordinate(0, 2))
 
             expect(firstCell.isSame(Cell.NONE)).toEqual(true)
+            expect(secondCell.isSame(Cell.NONE)).toEqual(true)
+            expect(thirdCell.isSame(Cell.NONE)).toEqual(true)
         })
     })
 
@@ -103,6 +105,28 @@ describe("GameField", function () {
             var thirdCell = nextGameField.getCell(new Coordinate(5, 2))
 
             expect(firstCell.isSame(Cell.NONE)).toEqual(true)
+            expect(secondCell.isSame(Cell.NONE)).toEqual(true)
+            expect(thirdCell.isSame(Cell.NONE)).toEqual(true)
+        })
+    })
+
+    context("when column has different top color", function () {
+        beforeEach(function () {
+            gameField.add(new Coordinate(5, 0), new Cell(Cell.RED))
+            gameField.add(new Coordinate(5, 1), new Cell(Cell.BLUE))
+            gameField.add(new Coordinate(5, 2), new Cell(Cell.BLUE))
+        })
+
+        it("is not matched", function () {
+            var nextGameField = gameField.transform()
+
+            var firstCell = nextGameField.getCell(new Coordinate(5, 0))
+            var secondCell = nextGameField.getCell(new Coordinate(5, 1))
+            var thirdCell = nextGameField.getCell(new Coordinate(5, 2))
+
+            expect(firstCell.isSame(Cell.NONE)).toEqual(false)
+            expect(secondCell.isSame(Cell.NONE)).toEqual(false)
+            expect(thirdCell.isSame(Cell.NONE)).toEqual(false)
         })
     })
 })
