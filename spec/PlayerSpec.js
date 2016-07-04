@@ -11,10 +11,6 @@ describe("Player", function () {
 })
 
 describe("GameField", function () {
-    it("can be created", function () {
-        var gameField = new GameField()
-    })
-    
     it("can have cells", function () {
         var gameField = new GameField()
         gameField.add(new Coordinate(0, 0), new Cell())
