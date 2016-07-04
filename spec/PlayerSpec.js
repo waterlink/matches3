@@ -24,4 +24,15 @@ describe("Cell", function () {
     it("can be created with color", function () {
         var cell = new Cell(Cell.RED)
     })
+
+    it("can be created with different color", function () {
+        var cell = new Cell(Cell.BLUE)
+    })
+
+    it("can be of the same color as other cell", function () {
+        var cell = new Cell(Cell.RED)
+        var otherCell = new Cell(Cell.RED)
+
+        expect(cell.isSame(otherCell)).toEqual(true)
+    })
 })
