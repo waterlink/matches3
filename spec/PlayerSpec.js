@@ -31,12 +31,14 @@ describe("GameField", function () {
         expect(cell.isSame(new Cell(Cell.BLUE))).toEqual(true)
     })
 
-    it("allows to fetch added cell with different coordinate", function () {
-        gameField.add(new Coordinate(0, 0), new Cell(Cell.BLUE))
-        gameField.add(new Coordinate(0, 1), new Cell(Cell.RED))
+    context("when there are 2 different cells", function () {
+        it("allows to fetch added cell with different coordinate", function () {
+            gameField.add(new Coordinate(0, 0), new Cell(Cell.BLUE))
+            gameField.add(new Coordinate(0, 1), new Cell(Cell.RED))
 
-        var cell = gameField.getCell(new Coordinate(0, 0))
-        expect(cell.isSame(new Cell(Cell.BLUE))).toEqual(true)
+            var cell = gameField.getCell(new Coordinate(0, 0))
+            expect(cell.isSame(new Cell(Cell.BLUE))).toEqual(true)
+        })
     })
 })
 
