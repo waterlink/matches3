@@ -25,7 +25,8 @@ Player.GameField = function () {
     }
 
     this.transform = function () {
-        if (this.getCell(new Coordinate(0, 2)).isSame(new Cell(Cell.BLUE))) {
+        var coordinate = new Coordinate(0, 2);
+        if (this.getCell(coordinate).isSame(new Cell(Cell.BLUE))) {
             return new Player.GameField()
         }
         return this
