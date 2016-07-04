@@ -345,6 +345,32 @@ describe("Coordinate", function () {
         })
     })
 
+    describe("getPrevByX", function () {
+        it("can be used to fetch previous x coordinate", function () {
+            var coordinate = new Coordinate(3, 4)
+            var expectedPrevXCoordinate = new Coordinate(2, 4)
+            var prevXCoordinate = coordinate.getPrevByX()
+
+            expect(prevXCoordinate.isSame(expectedPrevXCoordinate)).toEqual(true)
+        })
+
+        it("can be used to fetch different previous x coordinate", function () {
+            var coordinate = new Coordinate(33, 4)
+            var expectedPrevXCoordinate = new Coordinate(32, 4)
+            var prevXCoordinate = coordinate.getPrevByX()
+
+            expect(prevXCoordinate.isSame(expectedPrevXCoordinate)).toEqual(true)
+        })
+
+        it("can be used to fetch previous x coordinate with different y", function () {
+            var coordinate = new Coordinate(3, 45)
+            var expectedPrevXCoordinate = new Coordinate(2, 45)
+            var prevXCoordinate = coordinate.getPrevByX()
+
+            expect(prevXCoordinate.isSame(expectedPrevXCoordinate)).toEqual(true)
+        })
+    })
+
     describe(".getNextByY", function () {
         it("can be used to fetch next y coordinate", function () {
             var coordinate = new Coordinate(3, 4)

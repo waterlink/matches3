@@ -82,6 +82,10 @@ Player.Coordinate = function (x, y) {
         return new Player.Coordinate(x + 1, y)
     }
 
+    this.getPrevByX = function () {
+        return new Player.Coordinate(x - 1, y)
+    }
+
     this.getNextByY = function () {
         return new Player.Coordinate(x, y + 1)
     }
