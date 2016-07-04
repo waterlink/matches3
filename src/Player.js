@@ -4,6 +4,7 @@ function Player(gameField) {
 
 Player.GameField = function () {
     var Cell = Player.Cell
+    var Coordinate = Player.Coordinate
 
     var pairs = []
 
@@ -24,7 +25,10 @@ Player.GameField = function () {
     }
 
     this.transform = function () {
-        
+        if (this.getCell(new Coordinate(0, 2)).isSame(new Cell(Cell.BLUE))) {
+            return new Player.GameField()
+        }
+        return this
     }
 }
 

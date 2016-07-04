@@ -60,13 +60,31 @@ describe("GameField", function () {
         })
 
         it("stays same", function () {
-            gameField.transform()
+            var nextGameField = gameField.transform()
 
-            var firstCell = gameField.getCell(new Coordinate(0, 0))
-            var secondCell = gameField.getCell(new Coordinate(0, 1))
+            var firstCell = nextGameField.getCell(new Coordinate(0, 0))
+            var secondCell = nextGameField.getCell(new Coordinate(0, 1))
 
             expect(firstCell.isSame(new Cell(Cell.BLUE))).toEqual(true)
             expect(secondCell.isSame(new Cell(Cell.RED))).toEqual(true)
+        })
+    })
+
+    context("when something can be matched vertically", function () {
+        beforeEach(function () {
+            gameField.add(new Coordinate(0, 0), new Cell(Cell.BLUE))
+            gameField.add(new Coordinate(0, 1), new Cell(Cell.BLUE))
+            gameField.add(new Coordinate(0, 2), new Cell(Cell.BLUE))
+        })
+
+        it("gets matched and destroyed", function () {
+            var nextGameField = gameField.transform()
+
+            var firstCell = nextGameField.getCell(new Coordinate(0, 0))
+            var secondCell = nextGameField.getCell(new Coordinate(0, 1))
+            var thirdCell = nextGameField.getCell(new Coordinate(0, 2))
+
+            expect(firstCell.isSame(Cell.NONE)).toEqual(true)
         })
     })
 })
