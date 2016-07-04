@@ -241,7 +241,7 @@ describe("GameField", function () {
         })
     })
 
-    xcontext("when there are more cells, than just matching column", function () {
+    context("when there are more cells, than just matching column", function () {
         beforeEach(function () {
             setupGameField(5, 0, [
                 "RR",

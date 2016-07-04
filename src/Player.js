@@ -29,13 +29,33 @@ Player.GameField = function () {
 
         var gameField = new Player.GameField();
 
-        var coordinate = pairs[0].coordinate;
-        var firstCell = this.getCell(coordinate)
-        var middleCell = this.getCell(coordinate.getNextByY())
-        var lastCell = this.getCell(coordinate.getNextByY().getNextByY());
 
-        if (!middleCell.isSame(firstCell) || !lastCell.isSame(firstCell)) {
-            return this
+        for (var index = 0; index < pairs.length; index++) {
+            var coordinate = pairs[index].coordinate;
+            var cell = this.getCell(coordinate)
+            var matching = false
+
+            var cells = [
+                this.getCell(coordinate.getPrevByY().getPrevByY()),
+                this.getCell(coordinate.getPrevByY()),
+                cell,
+                this.getCell(coordinate.getNextByY()),
+                this.getCell(coordinate.getNextByY().getNextByY())
+            ]
+
+            for (var i = 0; i < 3; i++) {
+                var firstCell = cells[i]
+                var middleCell = cells[i + 1]
+                var lastCell = cells[i + 2]
+
+                if (middleCell.isSame(firstCell) && lastCell.isSame(firstCell)) {
+                    matching = true
+                }
+            }
+
+            if (!matching) {
+                gameField.add(coordinate, cell)
+            }
         }
         
         return gameField
