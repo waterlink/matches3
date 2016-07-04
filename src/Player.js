@@ -1,5 +1,7 @@
 function Player(gameField) {
-
+    this.makeTurn = function (turn) {
+        
+    }
 }
 
 Player.GameField = function () {

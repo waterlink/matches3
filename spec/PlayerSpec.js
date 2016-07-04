@@ -3,12 +3,49 @@ const GameField = Player.GameField
 const Cell = Player.Cell
 const Coordinate = Player.Coordinate
 
+function SwapTurn() {
+    
+}
+
 describe("Player", function () {
     it("can be created with game field", function () {
         var gameField = new GameField()
         var player = new Player(gameField)
     })
+
+    it("can make a turn to swap two cells places", function () {
+        var gameField = new GameField()
+        var player = new Player(gameField)
+
+        setup(gameField, 0, 0, [
+            "RRB",
+            "RRB",
+            "BBR"
+        ])
+
+        player.makeTurn(new SwapTurn(new Coordinate(2, 2), new Coordinate(1, 2)))
+    })
 })
+
+function setup(gameField, offsetX, offsetY, field) {
+    const colors = {"R": Cell.RED, "B": Cell.BLUE}
+
+    for (var y = 0; y < field.length; y++) {
+        for (var x = 0; x < field[0].length; x++) {
+            var cellRepr = field[y][x]
+            var coordinate = new Coordinate(offsetX + x, offsetY + y)
+            var cell
+
+            if (cellRepr == ".") {
+                cell = Cell.NONE
+            } else {
+                cell = new Cell(colors[cellRepr])
+            }
+
+            gameField.add(coordinate, cell)
+        }
+    }
+}
 
 describe("GameField", function () {
     var gameField
@@ -18,23 +55,7 @@ describe("GameField", function () {
     })
 
     function setupGameField(offsetX, offsetY, field) {
-        const colors = {"R": Cell.RED, "B": Cell.BLUE}
-
-        for (var y = 0; y < field.length; y++) {
-            for (var x = 0; x < field[0].length; x++) {
-                var cellRepr = field[y][x]
-                var coordinate = new Coordinate(offsetX + x, offsetY + y)
-                var cell
-
-                if (cellRepr == ".") {
-                    cell = Cell.NONE
-                } else {
-                    cell = new Cell(colors[cellRepr])
-                }
-
-                gameField.add(coordinate, cell)
-            }
-        }
+        setup(gameField, offsetX, offsetY, field)
     }
 
     function cellAt(x, y) {
