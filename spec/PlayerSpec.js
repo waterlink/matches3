@@ -174,4 +174,14 @@ describe("Coordinate", function () {
             expect(nextXCoordinate.isSame(expectedNextXCoordinate)).toEqual(true)
         })
     })
+
+    describe(".getNextByY", function () {
+        it("can be used to fetch next y coordinate", function () {
+            var coordinate = new Coordinate(3, 4)
+            var expectedNextYCoordinate = new Coordinate(3, 5)
+            var nextYCoordinate = coordinate.getNextByY()
+
+            expect(nextYCoordinate.isSame(expectedNextYCoordinate)).toEqual(true)
+        })
+    })
 })

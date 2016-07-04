@@ -25,7 +25,7 @@ Player.GameField = function () {
     }
 
     this.transform = function () {
-        var coordinate = new Coordinate(0, 2);
+        var coordinate = new Coordinate(0, 2)
         if (this.getCell(coordinate).isSame(new Cell(Cell.BLUE))) {
             return new Player.GameField()
         }
@@ -61,6 +61,10 @@ Player.Coordinate = function (x, y) {
 
     this.getNextByX = function () {
         return new Player.Coordinate(x + 1, y)
+    }
+
+    this.getNextByY = function () {
+        return new Player.Coordinate(3, 5)
     }
 }
 
