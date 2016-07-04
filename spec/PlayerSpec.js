@@ -1,14 +1,11 @@
 const Player = require("../src/Player")
+const GameField = Player.GameField
 
 describe("Player", function () {
     it("can be created", function () {
         var player = new Player()
     })
 })
-
-function GameField() {
-
-}
 
 describe("GameField", function () {
     it("can be created", function () {
