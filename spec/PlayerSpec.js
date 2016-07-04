@@ -2,10 +2,7 @@ const Player = require("../src/Player")
 const GameField = Player.GameField
 const Cell = Player.Cell
 const Coordinate = Player.Coordinate
-
-function SwapTurn() {
-    
-}
+const SwapTurn = Player.SwapTurn
 
 describe("Player", function () {
     it("can be created with game field", function () {

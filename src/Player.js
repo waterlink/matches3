@@ -1,7 +1,11 @@
 function Player(gameField) {
     this.makeTurn = function (turn) {
-        
+
     }
+}
+
+Player.SwapTurn = function () {
+
 }
 
 Player.GameField = function () {
