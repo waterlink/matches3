@@ -37,23 +37,24 @@ describe("GameField", function () {
         }
     }
 
+    function cellAt(x, y) {
+        return gameField.getCell(new Coordinate(x, y));
+    }
+
     it("can have cells", function () {
         gameField.add(new Coordinate(0, 0), new Cell(Cell.RED))
 
-        var cell = gameField.getCell(new Coordinate(0, 0))
-        expect(cell.isSame(new Cell(Cell.RED))).toEqual(true)
+        expect(cellAt(0, 0).isSame(new Cell(Cell.RED))).toEqual(true)
     })
 
     it("allows to fetch added cell", function () {
         gameField.add(new Coordinate(0, 0), new Cell(Cell.BLUE))
 
-        var cell = gameField.getCell(new Coordinate(0, 0))
-        expect(cell.isSame(new Cell(Cell.BLUE))).toEqual(true)
+        expect(cellAt(0, 0).isSame(new Cell(Cell.BLUE))).toEqual(true)
     })
 
     it("handles missing cell gracefully", function () {
-        var cell = gameField.getCell(new Coordinate(0, 0))
-        expect(cell.isSame(Cell.NONE)).toEqual(true)
+        expect(cellAt(0, 0).isSame(Cell.NONE)).toEqual(true)
     })
 
     context("when there are 2 different cells", function () {
@@ -65,13 +66,11 @@ describe("GameField", function () {
         })
 
         it("allows to fetch first added cell", function () {
-            var cell = gameField.getCell(new Coordinate(0, 0))
-            expect(cell.isSame(new Cell(Cell.BLUE))).toEqual(true)
+            expect(cellAt(0, 0).isSame(new Cell(Cell.BLUE))).toEqual(true)
         })
 
         it("allows to fetch second added cell", function () {
-            var cell = gameField.getCell(new Coordinate(0, 1))
-            expect(cell.isSame(new Cell(Cell.RED))).toEqual(true)
+            expect(cellAt(0, 1).isSame(new Cell(Cell.RED))).toEqual(true)
         })
     })
 
@@ -84,13 +83,10 @@ describe("GameField", function () {
         })
 
         it("stays same", function () {
-            var nextGameField = gameField.transform()
+            gameField = gameField.transform()
 
-            var firstCell = nextGameField.getCell(new Coordinate(0, 0))
-            var secondCell = nextGameField.getCell(new Coordinate(0, 1))
-
-            expect(firstCell.isSame(new Cell(Cell.BLUE))).toEqual(true)
-            expect(secondCell.isSame(new Cell(Cell.RED))).toEqual(true)
+            expect(cellAt(0, 0).isSame(new Cell(Cell.BLUE))).toEqual(true)
+            expect(cellAt(0, 1).isSame(new Cell(Cell.RED))).toEqual(true)
         })
     })
 
@@ -104,15 +100,11 @@ describe("GameField", function () {
         })
 
         it("gets matched and destroyed", function () {
-            var nextGameField = gameField.transform()
+            gameField = gameField.transform()
 
-            var firstCell = nextGameField.getCell(new Coordinate(0, 0))
-            var secondCell = nextGameField.getCell(new Coordinate(0, 1))
-            var thirdCell = nextGameField.getCell(new Coordinate(0, 2))
-
-            expect(firstCell.isSame(Cell.NONE)).toEqual(true)
-            expect(secondCell.isSame(Cell.NONE)).toEqual(true)
-            expect(thirdCell.isSame(Cell.NONE)).toEqual(true)
+            expect(cellAt(0, 0).isSame(Cell.NONE)).toEqual(true)
+            expect(cellAt(0, 1).isSame(Cell.NONE)).toEqual(true)
+            expect(cellAt(0, 2).isSame(Cell.NONE)).toEqual(true)
         })
     })
 
@@ -126,15 +118,11 @@ describe("GameField", function () {
         })
 
         it("gets matched and destroyed", function () {
-            var nextGameField = gameField.transform()
+            gameField = gameField.transform()
 
-            var firstCell = nextGameField.getCell(new Coordinate(5, 0))
-            var secondCell = nextGameField.getCell(new Coordinate(5, 1))
-            var thirdCell = nextGameField.getCell(new Coordinate(5, 2))
-
-            expect(firstCell.isSame(Cell.NONE)).toEqual(true)
-            expect(secondCell.isSame(Cell.NONE)).toEqual(true)
-            expect(thirdCell.isSame(Cell.NONE)).toEqual(true)
+            expect(cellAt(5, 0).isSame(Cell.NONE)).toEqual(true)
+            expect(cellAt(5, 1).isSame(Cell.NONE)).toEqual(true)
+            expect(cellAt(5, 2).isSame(Cell.NONE)).toEqual(true)
         })
     })
 
@@ -148,15 +136,11 @@ describe("GameField", function () {
         })
 
         it("is not matched", function () {
-            var nextGameField = gameField.transform()
+            gameField = gameField.transform()
 
-            var firstCell = nextGameField.getCell(new Coordinate(5, 0))
-            var secondCell = nextGameField.getCell(new Coordinate(5, 1))
-            var thirdCell = nextGameField.getCell(new Coordinate(5, 2))
-
-            expect(firstCell.isSame(Cell.NONE)).toEqual(false)
-            expect(secondCell.isSame(Cell.NONE)).toEqual(false)
-            expect(thirdCell.isSame(Cell.NONE)).toEqual(false)
+            expect(cellAt(5, 0).isSame(Cell.NONE)).toEqual(false)
+            expect(cellAt(5, 1).isSame(Cell.NONE)).toEqual(false)
+            expect(cellAt(5, 2).isSame(Cell.NONE)).toEqual(false)
         })
     })
 
@@ -170,15 +154,11 @@ describe("GameField", function () {
         })
 
         it("is not matched", function () {
-            var nextGameField = gameField.transform()
+            gameField = gameField.transform()
 
-            var firstCell = nextGameField.getCell(new Coordinate(5, 0))
-            var secondCell = nextGameField.getCell(new Coordinate(5, 1))
-            var thirdCell = nextGameField.getCell(new Coordinate(5, 2))
-
-            expect(firstCell.isSame(Cell.NONE)).toEqual(false)
-            expect(secondCell.isSame(Cell.NONE)).toEqual(false)
-            expect(thirdCell.isSame(Cell.NONE)).toEqual(false)
+            expect(cellAt(5, 0).isSame(Cell.NONE)).toEqual(false)
+            expect(cellAt(5, 1).isSame(Cell.NONE)).toEqual(false)
+            expect(cellAt(5, 2).isSame(Cell.NONE)).toEqual(false)
         })
     })
 
@@ -192,15 +172,11 @@ describe("GameField", function () {
         })
 
         it("is not matched", function () {
-            var nextGameField = gameField.transform()
+            gameField = gameField.transform()
 
-            var firstCell = nextGameField.getCell(new Coordinate(5, 0))
-            var secondCell = nextGameField.getCell(new Coordinate(5, 1))
-            var thirdCell = nextGameField.getCell(new Coordinate(5, 2))
-
-            expect(firstCell.isSame(Cell.NONE)).toEqual(false)
-            expect(secondCell.isSame(Cell.NONE)).toEqual(false)
-            expect(thirdCell.isSame(Cell.NONE)).toEqual(false)
+            expect(cellAt(5, 0).isSame(Cell.NONE)).toEqual(false)
+            expect(cellAt(5, 1).isSame(Cell.NONE)).toEqual(false)
+            expect(cellAt(5, 2).isSame(Cell.NONE)).toEqual(false)
         })
     })
 
