@@ -58,6 +58,25 @@ describe("GameField", function () {
                     return result
                 }
             }
+        },
+
+        toBeOfColor: function (utils, customEqualityTesters) {
+            return {
+                compare: function (actual, expectedColor) {
+                    var result = {}
+
+                    var expected = new Cell(expectedColor);
+                    result.pass = utils.equals(actual.isSame(expected), true)
+
+                    if (result.pass) {
+                        result.message = "Expected " + actual + " not to be of color " + expectedColor
+                    } else {
+                        result.message = "Expected " + actual + " to be of color " + expectedColor
+                    }
+
+                    return result
+                }
+            }
         }
     }
 
@@ -68,13 +87,13 @@ describe("GameField", function () {
     it("can have cells", function () {
         gameField.add(new Coordinate(0, 0), new Cell(Cell.RED))
 
-        expect(cellAt(0, 0).isSame(new Cell(Cell.RED))).toEqual(true)
+        expect(cellAt(0, 0)).toBeOfColor(Cell.RED)
     })
 
     it("allows to fetch added cell", function () {
         gameField.add(new Coordinate(0, 0), new Cell(Cell.BLUE))
 
-        expect(cellAt(0, 0).isSame(new Cell(Cell.BLUE))).toEqual(true)
+        expect(cellAt(0, 0)).toBeOfColor(Cell.BLUE)
     })
 
     it("handles missing cell gracefully", function () {
@@ -207,15 +226,15 @@ describe("GameField", function () {
 })
 
 describe("Cell", function () {
+    var cell = new Cell(Cell.RED)
+
     it("can be of the same color as other cell", function () {
-        var cell = new Cell(Cell.RED)
         var otherCell = new Cell(Cell.RED)
 
         expect(cell.isSame(otherCell)).toEqual(true)
     })
 
     it("can be of different color from other cell", function () {
-        var cell = new Cell(Cell.RED)
         var otherCell = new Cell(Cell.BLUE)
 
         expect(cell.isSame(otherCell)).toEqual(false)
@@ -225,6 +244,16 @@ describe("Cell", function () {
         var cellWithoutColor = new Cell(undefined)
 
         expect(cellWithoutColor.isSame(Cell.NONE)).toEqual(false)
+    })
+
+    it("has nice string representation", function () {
+        expect("hello, I am " + cell).toEqual("hello, I am Cell(red)")
+    })
+
+    describe("NONE", function () {
+        it("has nice string representation", function () {
+            expect("hello, I am " + Cell.NONE).toEqual("hello, I am Cell.NONE")
+        })
     })
 })
 

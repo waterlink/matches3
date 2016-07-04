@@ -44,6 +44,10 @@ Player.Cell = function (color) {
     this.isSame = function (other) {
         return color == other._color
     }
+
+    this.toString = function () {
+        return "Cell(" + color + ")"
+    }
 }
 
 var NoCell = function () {
@@ -51,6 +55,10 @@ var NoCell = function () {
 
     this.isSame = function (other) {
         return Player.Cell.NONE === other
+    }
+
+    this.toString = function () {
+        return "Cell.NONE"
     }
 }
 
