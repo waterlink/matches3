@@ -19,9 +19,10 @@ Player.Cell.BLUE = "blue"
 
 Player.Coordinate = function (x, y) {
     this._x = x
+    this._y = y
 
     this.isSame = function (other) {
-        return x == other._x
+        return x == other._x && y == other._y
     }
 }
 

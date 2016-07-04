@@ -55,4 +55,11 @@ describe("Coordinate", function () {
 
         expect(coordinate.isSame(otherCoordinate)).toEqual(false)
     })
+
+    it("can not be the same as other cell with different y", function () {
+        var coordinate = new Coordinate(3, 4)
+        var otherCoordinate = new Coordinate(3, 5)
+
+        expect(coordinate.isSame(otherCoordinate)).toEqual(false)
+    })
 })
