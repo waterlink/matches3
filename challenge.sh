@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 while :; do
-    npm test || (git reset --hard && git clean -df)
-    sleep 2
+    sleep 120
+    notify-send -t 700 "2 mins are up"
 done
