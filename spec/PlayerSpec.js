@@ -223,7 +223,7 @@ describe("GameField", function () {
         })
     })
 
-    context("when column has all different colors", function () {
+    context("when column is of different color", function () {
         beforeEach(function () {
             setupGameField(5, 0, [
                 "R",
@@ -238,6 +238,24 @@ describe("GameField", function () {
             expect(cellAt(5, 0)).toBeMissing()
             expect(cellAt(5, 1)).toBeMissing()
             expect(cellAt(5, 2)).toBeMissing()
+        })
+    })
+
+    xcontext("when there are more cells, than just matching column", function () {
+        beforeEach(function () {
+            setupGameField(5, 0, [
+                "RR",
+                "RB",
+                "RB"
+            ])
+        })
+
+        it("is matched and destroyed", function () {
+            gameField = gameField.transform()
+
+            expect(cellAt(6, 0)).not.toBeMissing()
+            expect(cellAt(6, 1)).not.toBeMissing()
+            expect(cellAt(6, 2)).not.toBeMissing()
         })
     })
 

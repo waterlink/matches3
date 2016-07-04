@@ -27,15 +27,18 @@ Player.GameField = function () {
     this.transform = function () {
         if (pairs.length == 0) return this
 
+        var gameField = new Player.GameField();
+
         var coordinate = pairs[0].coordinate;
         var firstCell = this.getCell(coordinate)
         var middleCell = this.getCell(coordinate.getNextByY())
         var lastCell = this.getCell(coordinate.getNextByY().getNextByY());
 
-        if (middleCell.isSame(firstCell) && lastCell.isSame(firstCell)) {
-            return new Player.GameField()
+        if (!middleCell.isSame(firstCell) || !lastCell.isSame(firstCell)) {
+            return this
         }
-        return this
+        
+        return gameField
     }
 }
 
