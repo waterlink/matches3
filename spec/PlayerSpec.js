@@ -223,6 +223,24 @@ describe("GameField", function () {
         })
     })
 
+    context("when column has all different colors", function () {
+        beforeEach(function () {
+            setupGameField(5, 0, [
+                "R",
+                "R",
+                "R"
+            ])
+        })
+
+        it("is matched and destroyed", function () {
+            gameField = gameField.transform()
+
+            expect(cellAt(5, 0)).toBeMissing()
+            expect(cellAt(5, 1)).toBeMissing()
+            expect(cellAt(5, 2)).toBeMissing()
+        })
+    })
+
 })
 
 describe("Cell", function () {
