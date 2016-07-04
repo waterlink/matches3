@@ -54,10 +54,12 @@ describe("GameField", function () {
     })
 
     context("when nothing can be match3-ed", function () {
-        it("stays same", function () {
+        beforeEach(function () {
             gameField.add(new Coordinate(0, 0), new Cell(Cell.BLUE))
             gameField.add(new Coordinate(0, 1), new Cell(Cell.RED))
+        })
 
+        it("stays same", function () {
             gameField.transform()
 
             var firstCell = gameField.getCell(new Coordinate(0, 0))
