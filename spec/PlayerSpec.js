@@ -11,19 +11,23 @@ describe("Player", function () {
 })
 
 describe("GameField", function () {
+    var gameField
+
+    beforeEach(function () {
+        gameField = new GameField()
+    })
+
     it("can have cells", function () {
-        var gameField = new GameField()
         gameField.add(new Coordinate(0, 0), new Cell(Cell.RED))
 
-        cell = gameField.getCell(new Coordinate(0, 0))
+        var cell = gameField.getCell(new Coordinate(0, 0))
         expect(cell.isSame(new Cell(Cell.RED))).toEqual(true)
     })
 
     it("allows to fetch added cell", function () {
-        var gameField = new GameField()
         gameField.add(new Coordinate(0, 0), new Cell(Cell.BLUE))
 
-        cell = gameField.getCell(new Coordinate(0, 0))
+        var cell = gameField.getCell(new Coordinate(0, 0))
         expect(cell.isSame(new Cell(Cell.BLUE))).toEqual(true)
     })
 })
