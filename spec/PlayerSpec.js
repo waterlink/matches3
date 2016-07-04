@@ -158,5 +158,12 @@ describe("Coordinate", function () {
             expect(nextXCoordinate.isSame(expectedNextXCoordinate)).toEqual(true)
         })
 
+        it("can be used to fetch different next x coordinate", function () {
+            var coordinate = new Coordinate(75, 4)
+            var expectedNextXCoordinate = new Coordinate(76, 4)
+            var nextXCoordinate = coordinate.getNextByX()
+
+            expect(nextXCoordinate.isSame(expectedNextXCoordinate)).toEqual(true)
+        })
     })
 })

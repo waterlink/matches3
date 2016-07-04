@@ -59,7 +59,7 @@ Player.Coordinate = function (x, y) {
     }
 
     this.getNextByX = function () {
-        return new Player.Coordinate(4, 4)
+        return new Player.Coordinate(x + 1, 4)
     }
 }
 
