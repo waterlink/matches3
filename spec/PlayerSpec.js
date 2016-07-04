@@ -41,6 +41,28 @@ describe("GameField", function () {
         return gameField.getCell(new Coordinate(x, y));
     }
 
+    var customMatchers = {
+        toBeMissing: function (utils, customEqualityTesters) {
+            return {
+                compare: function (actual, expected) {
+                    var result = {}
+
+                    result.pass = utils.equals(actual.isSame(Cell.NONE), true)
+
+                    if (result.pass) {
+                        result.message = "Expected " + actual + " to be present"
+                    } else {
+                        result.message = "Expected " + actual + " to be missing"
+                    }
+                }
+            }
+        }
+    }
+
+    beforeEach(function () {
+        
+    })
+
     it("can have cells", function () {
         gameField.add(new Coordinate(0, 0), new Cell(Cell.RED))
 
